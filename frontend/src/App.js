@@ -1,7 +1,9 @@
 import logo from './logo.svg';
 import './App.css';
+import rpcInstance from './Rpc';
 
 function App() {
+  console.log(rpcInstance);
   return (
     <div className="App">
       <header className="App-header">

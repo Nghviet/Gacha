@@ -1,0 +1,3428 @@
+{
+  "contractName": "Card",
+  "abi": [
+    {
+      "anonymous": false,
+      "inputs": [
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "previousOwner",
+          "type": "address"
+        },
+        {
+          "indexed": true,
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "OwnershipTransferred",
+      "type": "event"
+    },
+    {
+      "inputs": [],
+      "name": "owner",
+      "outputs": [
+        {
+          "internalType": "address",
+          "name": "",
+          "type": "address"
+        }
+      ],
+      "stateMutability": "view",
+      "type": "function",
+      "constant": true
+    },
+    {
+      "inputs": [],
+      "name": "renounceOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    },
+    {
+      "inputs": [
+        {
+          "internalType": "address",
+          "name": "newOwner",
+          "type": "address"
+        }
+      ],
+      "name": "transferOwnership",
+      "outputs": [],
+      "stateMutability": "nonpayable",
+      "type": "function"
+    }
+  ],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[{\"anonymous\":false,\"inputs\":[{\"indexed\":true,\"internalType\":\"address\",\"name\":\"previousOwner\",\"type\":\"address\"},{\"indexed\":true,\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"OwnershipTransferred\",\"type\":\"event\"},{\"inputs\":[],\"name\":\"owner\",\"outputs\":[{\"internalType\":\"address\",\"name\":\"\",\"type\":\"address\"}],\"stateMutability\":\"view\",\"type\":\"function\"},{\"inputs\":[],\"name\":\"renounceOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"},{\"inputs\":[{\"internalType\":\"address\",\"name\":\"newOwner\",\"type\":\"address\"}],\"name\":\"transferOwnership\",\"outputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"function\"}],\"devdoc\":{\"kind\":\"dev\",\"methods\":{\"owner()\":{\"details\":\"Returns the address of the current owner.\"},\"renounceOwnership()\":{\"details\":\"Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner.\"},\"transferOwnership(address)\":{\"details\":\"Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner.\"}},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Card.sol\":\"Card\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Card.sol\":{\"keccak256\":\"0x75df27e16f0e7fc1b5023cb7620088bfc16584d07dcb3e0b76e12446d442c7cf\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://2aaf6053193b94d3bb1b7343d8bda7f8e2783f08070d65cfccbfa8816d16381a\",\"dweb:/ipfs/QmZNtzUmMuYPm9hPbYQgfcrYgdJy6PFhCtA4nqBBt8Fzrh\"]},\"@openzeppelin/contracts/access/Ownable.sol\":{\"keccak256\":\"0x15e2d5bd4c28a88548074c54d220e8086f638a71ed07e6b3ba5a70066fcf458d\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://90faf5851c02f9bd42c5bfb54d4f0421a2612f50ab80b2c4fa24fa3792071cc2\",\"dweb:/ipfs/QmRGM4F2PcGVF85aTfaA9YBhCHHDqrMhRjyp6fGeBTtirb\"]},\"@openzeppelin/contracts/utils/Context.sol\":{\"keccak256\":\"0x8d3cb350f04ff49cfb10aef08d87f19dcbaecc8027b0bed12f3275cd12f38cf0\",\"license\":\"MIT\",\"urls\":[\"bzz-raw://ded47ec7c96750f9bd04bbbc84f659992d4ba901cb7b532a52cd468272cf378f\",\"dweb:/ipfs/QmfBrGtQP7rZEqEg6Wz6jh2N2Kukpj1z5v3CGWmAqrzm96\"]}},\"version\":1}",
+  "bytecode": "0x608060405234801561001057600080fd5b5060006100216100c460201b60201c565b9050806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff1602179055508073ffffffffffffffffffffffffffffffffffffffff16600073ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3506100cc565b600033905090565b61057c806100db6000396000f3fe608060405234801561001057600080fd5b50600436106100415760003560e01c8063715018a6146100465780638da5cb5b14610050578063f2fde38b1461006e575b600080fd5b61004e61008a565b005b6100586101c4565b6040516100659190610491565b60405180910390f35b610088600480360381019061008391906103b3565b6101ed565b005b610092610396565b73ffffffffffffffffffffffffffffffffffffffff166100b06101c4565b73ffffffffffffffffffffffffffffffffffffffff1614610106576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016100fd906104cc565b60405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff1660008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b6101f5610396565b73ffffffffffffffffffffffffffffffffffffffff166102136101c4565b73ffffffffffffffffffffffffffffffffffffffff1614610269576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401610260906104cc565b60405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156102d9576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016102d0906104ac565b60405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff1660008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b600033905090565b6000813590506103ad8161052f565b92915050565b6000602082840312156103c557600080fd5b60006103d38482850161039e565b91505092915050565b6103e5816104fd565b82525050565b60006103f86026836104ec565b91507f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160008301527f64647265737300000000000000000000000000000000000000000000000000006020830152604082019050919050565b600061045e6020836104ec565b91507f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726000830152602082019050919050565b60006020820190506104a660008301846103dc565b92915050565b600060208201905081810360008301526104c5816103eb565b9050919050565b600060208201905081810360008301526104e581610451565b9050919050565b600082825260208201905092915050565b60006105088261050f565b9050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b610538816104fd565b811461054357600080fd5b5056fea264697066735822122098547700e34f4232445850e7e6b5e6263973238e7f3f82654840acc9e0511fd364736f6c634300060c0033",
+  "deployedBytecode": "0x608060405234801561001057600080fd5b50600436106100415760003560e01c8063715018a6146100465780638da5cb5b14610050578063f2fde38b1461006e575b600080fd5b61004e61008a565b005b6100586101c4565b6040516100659190610491565b60405180910390f35b610088600480360381019061008391906103b3565b6101ed565b005b610092610396565b73ffffffffffffffffffffffffffffffffffffffff166100b06101c4565b73ffffffffffffffffffffffffffffffffffffffff1614610106576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016100fd906104cc565b60405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff1660008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a360008060006101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff160217905550565b60008060009054906101000a900473ffffffffffffffffffffffffffffffffffffffff16905090565b6101f5610396565b73ffffffffffffffffffffffffffffffffffffffff166102136101c4565b73ffffffffffffffffffffffffffffffffffffffff1614610269576040517f08c379a0000000000000000000000000000000000000000000000000000000008152600401610260906104cc565b60405180910390fd5b600073ffffffffffffffffffffffffffffffffffffffff168173ffffffffffffffffffffffffffffffffffffffff1614156102d9576040517f08c379a00000000000000000000000000000000000000000000000000000000081526004016102d0906104ac565b60405180910390fd5b8073ffffffffffffffffffffffffffffffffffffffff1660008054906101000a900473ffffffffffffffffffffffffffffffffffffffff1673ffffffffffffffffffffffffffffffffffffffff167f8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e060405160405180910390a3806000806101000a81548173ffffffffffffffffffffffffffffffffffffffff021916908373ffffffffffffffffffffffffffffffffffffffff16021790555050565b600033905090565b6000813590506103ad8161052f565b92915050565b6000602082840312156103c557600080fd5b60006103d38482850161039e565b91505092915050565b6103e5816104fd565b82525050565b60006103f86026836104ec565b91507f4f776e61626c653a206e6577206f776e657220697320746865207a65726f206160008301527f64647265737300000000000000000000000000000000000000000000000000006020830152604082019050919050565b600061045e6020836104ec565b91507f4f776e61626c653a2063616c6c6572206973206e6f7420746865206f776e65726000830152602082019050919050565b60006020820190506104a660008301846103dc565b92915050565b600060208201905081810360008301526104c5816103eb565b9050919050565b600060208201905081810360008301526104e581610451565b9050919050565b600082825260208201905092915050565b60006105088261050f565b9050919050565b600073ffffffffffffffffffffffffffffffffffffffff82169050919050565b610538816104fd565b811461054357600080fd5b5056fea264697066735822122098547700e34f4232445850e7e6b5e6263973238e7f3f82654840acc9e0511fd364736f6c634300060c0033",
+  "immutableReferences": {},
+  "sourceMap": "149:824:0:-:0;;;;;;;;;;;;;884:17:2;904:12;:10;;;:12;;:::i;:::-;884:32;;935:9;926:6;;:18;;;;;;;;;;;;;;;;;;992:9;959:43;;988:1;959:43;;;;;;;;;;;;850:159;149:824:0;;598:104:3;651:15;685:10;678:17;;598:104;:::o;149:824:0:-;;;;;;;",
+  "deployedSourceMap": "149:824:0:-:0;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;1717:145:2;;;:::i;:::-;;1085:85;;;:::i;:::-;;;;;;;:::i;:::-;;;;;;;;2011:240;;;;;;;;;;;;;:::i;:::-;;:::i;:::-;;1717:145;1308:12;:10;:12::i;:::-;1297:23;;:7;:5;:7::i;:::-;:23;;;1289:68;;;;;;;;;;;;:::i;:::-;;;;;;;;;1823:1:::1;1786:40;;1807:6;::::0;::::1;;;;;;;;1786:40;;;;;;;;;;;;1853:1;1836:6:::0;::::1;:19;;;;;;;;;;;;;;;;;;1717:145::o:0;1085:85::-;1131:7;1157:6;;;;;;;;;;;1150:13;;1085:85;:::o;2011:240::-;1308:12;:10;:12::i;:::-;1297:23;;:7;:5;:7::i;:::-;:23;;;1289:68;;;;;;;;;;;;:::i;:::-;;;;;;;;;2119:1:::1;2099:22;;:8;:22;;;;2091:73;;;;;;;;;;;;:::i;:::-;;;;;;;;;2208:8;2179:38;;2200:6;::::0;::::1;;;;;;;;2179:38;;;;;;;;;;;;2236:8;2227:6;::::0;:17:::1;;;;;;;;;;;;;;;;;;2011:240:::0;:::o;598:104:3:-;651:15;685:10;678:17;;598:104;:::o;5:130:-1:-;;85:6;72:20;63:29;;97:33;124:5;97:33;:::i;:::-;57:78;;;;:::o;142:241::-;;246:2;234:9;225:7;221:23;217:32;214:2;;;262:1;259;252:12;214:2;297:1;314:53;359:7;350:6;339:9;335:22;314:53;:::i;:::-;304:63;;276:97;208:175;;;;:::o;390:113::-;473:24;491:5;473:24;:::i;:::-;468:3;461:37;455:48;;:::o;511:375::-;;671:67;735:2;730:3;671:67;:::i;:::-;664:74;;771:34;767:1;762:3;758:11;751:55;840:8;835:2;830:3;826:12;819:30;877:2;872:3;868:12;861:19;;657:229;;;:::o;895:332::-;;1055:67;1119:2;1114:3;1055:67;:::i;:::-;1048:74;;1155:34;1151:1;1146:3;1142:11;1135:55;1218:2;1213:3;1209:12;1202:19;;1041:186;;;:::o;1235:222::-;;1362:2;1351:9;1347:18;1339:26;;1376:71;1444:1;1433:9;1429:17;1420:6;1376:71;:::i;:::-;1333:124;;;;:::o;1464:416::-;;1664:2;1653:9;1649:18;1641:26;;1714:9;1708:4;1704:20;1700:1;1689:9;1685:17;1678:47;1739:131;1865:4;1739:131;:::i;:::-;1731:139;;1635:245;;;:::o;1887:416::-;;2087:2;2076:9;2072:18;2064:26;;2137:9;2131:4;2127:20;2123:1;2112:9;2108:17;2101:47;2162:131;2288:4;2162:131;:::i;:::-;2154:139;;2058:245;;;:::o;2311:163::-;;2426:6;2421:3;2414:19;2463:4;2458:3;2454:14;2439:29;;2407:67;;;;:::o;2482:91::-;;2544:24;2562:5;2544:24;:::i;:::-;2533:35;;2527:46;;;:::o;2580:121::-;;2653:42;2646:5;2642:54;2631:65;;2625:76;;;:::o;2708:117::-;2777:24;2795:5;2777:24;:::i;:::-;2770:5;2767:35;2757:2;;2816:1;2813;2806:12;2757:2;2751:74;:::o",
+  "source": "// SPDX-License-Identifier: GPL-3.0\npragma solidity 0.6.12;\npragma experimental ABIEncoderV2;\n\nimport \"@openzeppelin/contracts/access/Ownable.sol\";\n\ncontract Card is Ownable {\n\n\tstruct Skill {\n\t\tstring name;\n\t\tstring description;\n\t}\n\n  \tstruct Servant {\n  \t\tuint8 id;\n\t\tuint8 saint;\n\n\t\tstring name;\n\t\tstring class;\n\t\tuint8 level;\n\t\tuint8 rank;\n\t\tuint8 npLv;\n\n\t\tuint8 levelCap;\n\n\t\tSkill active;\n\t\tSkill passive;\n\n\t\tuint16 atk;\n\t\tuint16 def;\n\t\tuint16 hp;\n\t\tuint16 critRate;\n\t\tuint16 critMultiplier;\n\n\t\tuint8 atkPerLevel;\n\t\tuint8 defPerLevel;\n\t\tuint8 hpPerLevel;\n\t}\n\n\tmapping(address => Servant[]) drawed;\n\n\tfunction initMaster(address master) internal {\n\t\tServant memory card = Servant(1, 1, \"Mashu Kyrielight\", \"Shielder\", 1, 3, 1, 60, Skill(\"Undefined\", \"Undefined\"), Skill(\"Undefined\", \"Undefined\"), 10, 10, 1000, 25, 200, 100, 100, 100);\n\t\tdrawed[master].push(card);\n\t}\n\n\tfunction getCards(address master) internal returns(Servant[] memory){\n\t\treturn drawed[master];\n\t}\n}\n",
+  "sourcePath": "/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Card.sol",
+  "ast": {
+    "absolutePath": "/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Card.sol",
+    "exportedSymbols": {
+      "Card": [
+        108
+      ]
+    },
+    "id": 109,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 1,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:0"
+      },
+      {
+        "id": 2,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "60:33:0"
+      },
+      {
+        "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
+        "file": "@openzeppelin/contracts/access/Ownable.sol",
+        "id": 3,
+        "nodeType": "ImportDirective",
+        "scope": 109,
+        "sourceUnit": 320,
+        "src": "95:52:0",
+        "symbolAliases": [],
+        "unitAlias": ""
+      },
+      {
+        "abstract": false,
+        "baseContracts": [
+          {
+            "arguments": null,
+            "baseName": {
+              "contractScope": null,
+              "id": 4,
+              "name": "Ownable",
+              "nodeType": "UserDefinedTypeName",
+              "referencedDeclaration": 319,
+              "src": "166:7:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_contract$_Ownable_$319",
+                "typeString": "contract Ownable"
+              }
+            },
+            "id": 5,
+            "nodeType": "InheritanceSpecifier",
+            "src": "166:7:0"
+          }
+        ],
+        "contractDependencies": [
+          319,
+          342
+        ],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 108,
+        "linearizedBaseContracts": [
+          108,
+          319,
+          342
+        ],
+        "name": "Card",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Card.Skill",
+            "id": 10,
+            "members": [
+              {
+                "constant": false,
+                "id": 7,
+                "mutability": "mutable",
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 10,
+                "src": "195:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 6,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "195:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 9,
+                "mutability": "mutable",
+                "name": "description",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 10,
+                "src": "210:18:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 8,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "210:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Skill",
+            "nodeType": "StructDefinition",
+            "scope": 108,
+            "src": "178:54:0",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Card.Servant",
+            "id": 47,
+            "members": [
+              {
+                "constant": false,
+                "id": 12,
+                "mutability": "mutable",
+                "name": "id",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "258:8:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 11,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "258:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 14,
+                "mutability": "mutable",
+                "name": "saint",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "270:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 13,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "270:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 16,
+                "mutability": "mutable",
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "286:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 15,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "286:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 18,
+                "mutability": "mutable",
+                "name": "class",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "301:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 17,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "301:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 20,
+                "mutability": "mutable",
+                "name": "level",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "317:11:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 19,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "317:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 22,
+                "mutability": "mutable",
+                "name": "rank",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "332:10:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 21,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "332:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 24,
+                "mutability": "mutable",
+                "name": "npLv",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "346:10:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 23,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "346:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 26,
+                "mutability": "mutable",
+                "name": "levelCap",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "361:14:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 25,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "361:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 28,
+                "mutability": "mutable",
+                "name": "active",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "380:12:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Skill_$10_storage_ptr",
+                  "typeString": "struct Card.Skill"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 27,
+                  "name": "Skill",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 10,
+                  "src": "380:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Skill_$10_storage_ptr",
+                    "typeString": "struct Card.Skill"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 30,
+                "mutability": "mutable",
+                "name": "passive",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "396:13:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_struct$_Skill_$10_storage_ptr",
+                  "typeString": "struct Card.Skill"
+                },
+                "typeName": {
+                  "contractScope": null,
+                  "id": 29,
+                  "name": "Skill",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 10,
+                  "src": "396:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Skill_$10_storage_ptr",
+                    "typeString": "struct Card.Skill"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 32,
+                "mutability": "mutable",
+                "name": "atk",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "414:10:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint16",
+                  "typeString": "uint16"
+                },
+                "typeName": {
+                  "id": 31,
+                  "name": "uint16",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "414:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 34,
+                "mutability": "mutable",
+                "name": "def",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "428:10:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint16",
+                  "typeString": "uint16"
+                },
+                "typeName": {
+                  "id": 33,
+                  "name": "uint16",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "428:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 36,
+                "mutability": "mutable",
+                "name": "hp",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "442:9:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint16",
+                  "typeString": "uint16"
+                },
+                "typeName": {
+                  "id": 35,
+                  "name": "uint16",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "442:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 38,
+                "mutability": "mutable",
+                "name": "critRate",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "455:15:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint16",
+                  "typeString": "uint16"
+                },
+                "typeName": {
+                  "id": 37,
+                  "name": "uint16",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "455:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 40,
+                "mutability": "mutable",
+                "name": "critMultiplier",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "474:21:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint16",
+                  "typeString": "uint16"
+                },
+                "typeName": {
+                  "id": 39,
+                  "name": "uint16",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "474:6:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint16",
+                    "typeString": "uint16"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 42,
+                "mutability": "mutable",
+                "name": "atkPerLevel",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "500:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 41,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "500:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 44,
+                "mutability": "mutable",
+                "name": "defPerLevel",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "521:17:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 43,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "521:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              },
+              {
+                "constant": false,
+                "id": 46,
+                "mutability": "mutable",
+                "name": "hpPerLevel",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 47,
+                "src": "542:16:0",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_uint8",
+                  "typeString": "uint8"
+                },
+                "typeName": {
+                  "id": 45,
+                  "name": "uint8",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "542:5:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_uint8",
+                    "typeString": "uint8"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Servant",
+            "nodeType": "StructDefinition",
+            "scope": 108,
+            "src": "237:325:0",
+            "visibility": "public"
+          },
+          {
+            "constant": false,
+            "id": 52,
+            "mutability": "mutable",
+            "name": "drawed",
+            "nodeType": "VariableDeclaration",
+            "overrides": null,
+            "scope": 108,
+            "src": "565:36:0",
+            "stateVariable": true,
+            "storageLocation": "default",
+            "typeDescriptions": {
+              "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Servant_$47_storage_$dyn_storage_$",
+              "typeString": "mapping(address => struct Card.Servant[])"
+            },
+            "typeName": {
+              "id": 51,
+              "keyType": {
+                "id": 48,
+                "name": "address",
+                "nodeType": "ElementaryTypeName",
+                "src": "573:7:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_address",
+                  "typeString": "address"
+                }
+              },
+              "nodeType": "Mapping",
+              "src": "565:29:0",
+              "typeDescriptions": {
+                "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Servant_$47_storage_$dyn_storage_$",
+                "typeString": "mapping(address => struct Card.Servant[])"
+              },
+              "valueType": {
+                "baseType": {
+                  "contractScope": null,
+                  "id": 49,
+                  "name": "Servant",
+                  "nodeType": "UserDefinedTypeName",
+                  "referencedDeclaration": 47,
+                  "src": "584:7:0",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_struct$_Servant_$47_storage_ptr",
+                    "typeString": "struct Card.Servant"
+                  }
+                },
+                "id": 50,
+                "length": null,
+                "nodeType": "ArrayTypeName",
+                "src": "584:9:0",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_array$_t_struct$_Servant_$47_storage_$dyn_storage_ptr",
+                  "typeString": "struct Card.Servant[]"
+                }
+              }
+            },
+            "value": null,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 93,
+              "nodeType": "Block",
+              "src": "650:221:0",
+              "statements": [
+                {
+                  "assignments": [
+                    58
+                  ],
+                  "declarations": [
+                    {
+                      "constant": false,
+                      "id": 58,
+                      "mutability": "mutable",
+                      "name": "card",
+                      "nodeType": "VariableDeclaration",
+                      "overrides": null,
+                      "scope": 93,
+                      "src": "654:19:0",
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Servant_$47_memory_ptr",
+                        "typeString": "struct Card.Servant"
+                      },
+                      "typeName": {
+                        "contractScope": null,
+                        "id": 57,
+                        "name": "Servant",
+                        "nodeType": "UserDefinedTypeName",
+                        "referencedDeclaration": 47,
+                        "src": "654:7:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Servant_$47_storage_ptr",
+                          "typeString": "struct Card.Servant"
+                        }
+                      },
+                      "value": null,
+                      "visibility": "internal"
+                    }
+                  ],
+                  "id": 85,
+                  "initialValue": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 60,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "684:1:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 61,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "687:1:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "4d61736875204b797269656c69676874",
+                        "id": 62,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "690:18:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_4037f6d761cfbf48832f50486d1845773f241d9db629fcbdda1e65c6ce1bbcda",
+                          "typeString": "literal_string \"Mashu Kyrielight\""
+                        },
+                        "value": "Mashu Kyrielight"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "536869656c646572",
+                        "id": 63,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "string",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "710:10:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_stringliteral_ee473512bf7bd5432e758e9288fcbf301b644bf7b69bb8e7e3dcca70c362727a",
+                          "typeString": "literal_string \"Shielder\""
+                        },
+                        "value": "Shielder"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 64,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "722:1:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "33",
+                        "id": 65,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "725:1:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_3_by_1",
+                          "typeString": "int_const 3"
+                        },
+                        "value": "3"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "31",
+                        "id": 66,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "728:1:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        "value": "1"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "3630",
+                        "id": 67,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "731:2:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_60_by_1",
+                          "typeString": "int_const 60"
+                        },
+                        "value": "60"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "556e646566696e6564",
+                            "id": 69,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "741:11:0",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                              "typeString": "literal_string \"Undefined\""
+                            },
+                            "value": "Undefined"
+                          },
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "556e646566696e6564",
+                            "id": 70,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "754:11:0",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                              "typeString": "literal_string \"Undefined\""
+                            },
+                            "value": "Undefined"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                              "typeString": "literal_string \"Undefined\""
+                            },
+                            {
+                              "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                              "typeString": "literal_string \"Undefined\""
+                            }
+                          ],
+                          "id": 68,
+                          "name": "Skill",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 10,
+                          "src": "735:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_struct$_Skill_$10_storage_ptr_$",
+                            "typeString": "type(struct Card.Skill storage pointer)"
+                          }
+                        },
+                        "id": 71,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "structConstructorCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "735:31:0",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Skill_$10_memory_ptr",
+                          "typeString": "struct Card.Skill memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "arguments": [
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "556e646566696e6564",
+                            "id": 73,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "774:11:0",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                              "typeString": "literal_string \"Undefined\""
+                            },
+                            "value": "Undefined"
+                          },
+                          {
+                            "argumentTypes": null,
+                            "hexValue": "556e646566696e6564",
+                            "id": 74,
+                            "isConstant": false,
+                            "isLValue": false,
+                            "isPure": true,
+                            "kind": "string",
+                            "lValueRequested": false,
+                            "nodeType": "Literal",
+                            "src": "787:11:0",
+                            "subdenomination": null,
+                            "typeDescriptions": {
+                              "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                              "typeString": "literal_string \"Undefined\""
+                            },
+                            "value": "Undefined"
+                          }
+                        ],
+                        "expression": {
+                          "argumentTypes": [
+                            {
+                              "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                              "typeString": "literal_string \"Undefined\""
+                            },
+                            {
+                              "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                              "typeString": "literal_string \"Undefined\""
+                            }
+                          ],
+                          "id": 72,
+                          "name": "Skill",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 10,
+                          "src": "768:5:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_type$_t_struct$_Skill_$10_storage_ptr_$",
+                            "typeString": "type(struct Card.Skill storage pointer)"
+                          }
+                        },
+                        "id": 75,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "structConstructorCall",
+                        "lValueRequested": false,
+                        "names": [],
+                        "nodeType": "FunctionCall",
+                        "src": "768:31:0",
+                        "tryCall": false,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Skill_$10_memory_ptr",
+                          "typeString": "struct Card.Skill memory"
+                        }
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "3130",
+                        "id": 76,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "801:2:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_10_by_1",
+                          "typeString": "int_const 10"
+                        },
+                        "value": "10"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "3130",
+                        "id": 77,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "805:2:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_10_by_1",
+                          "typeString": "int_const 10"
+                        },
+                        "value": "10"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "31303030",
+                        "id": 78,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "809:4:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_1000_by_1",
+                          "typeString": "int_const 1000"
+                        },
+                        "value": "1000"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "3235",
+                        "id": 79,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "815:2:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_25_by_1",
+                          "typeString": "int_const 25"
+                        },
+                        "value": "25"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "323030",
+                        "id": 80,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "819:3:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_200_by_1",
+                          "typeString": "int_const 200"
+                        },
+                        "value": "200"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "313030",
+                        "id": 81,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "824:3:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_100_by_1",
+                          "typeString": "int_const 100"
+                        },
+                        "value": "100"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "313030",
+                        "id": 82,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "829:3:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_100_by_1",
+                          "typeString": "int_const 100"
+                        },
+                        "value": "100"
+                      },
+                      {
+                        "argumentTypes": null,
+                        "hexValue": "313030",
+                        "id": 83,
+                        "isConstant": false,
+                        "isLValue": false,
+                        "isPure": true,
+                        "kind": "number",
+                        "lValueRequested": false,
+                        "nodeType": "Literal",
+                        "src": "834:3:0",
+                        "subdenomination": null,
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_rational_100_by_1",
+                          "typeString": "int_const 100"
+                        },
+                        "value": "100"
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_4037f6d761cfbf48832f50486d1845773f241d9db629fcbdda1e65c6ce1bbcda",
+                          "typeString": "literal_string \"Mashu Kyrielight\""
+                        },
+                        {
+                          "typeIdentifier": "t_stringliteral_ee473512bf7bd5432e758e9288fcbf301b644bf7b69bb8e7e3dcca70c362727a",
+                          "typeString": "literal_string \"Shielder\""
+                        },
+                        {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_3_by_1",
+                          "typeString": "int_const 3"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_1_by_1",
+                          "typeString": "int_const 1"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_60_by_1",
+                          "typeString": "int_const 60"
+                        },
+                        {
+                          "typeIdentifier": "t_struct$_Skill_$10_memory_ptr",
+                          "typeString": "struct Card.Skill memory"
+                        },
+                        {
+                          "typeIdentifier": "t_struct$_Skill_$10_memory_ptr",
+                          "typeString": "struct Card.Skill memory"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_10_by_1",
+                          "typeString": "int_const 10"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_10_by_1",
+                          "typeString": "int_const 10"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_1000_by_1",
+                          "typeString": "int_const 1000"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_25_by_1",
+                          "typeString": "int_const 25"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_200_by_1",
+                          "typeString": "int_const 200"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_100_by_1",
+                          "typeString": "int_const 100"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_100_by_1",
+                          "typeString": "int_const 100"
+                        },
+                        {
+                          "typeIdentifier": "t_rational_100_by_1",
+                          "typeString": "int_const 100"
+                        }
+                      ],
+                      "id": 59,
+                      "name": "Servant",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 47,
+                      "src": "676:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_type$_t_struct$_Servant_$47_storage_ptr_$",
+                        "typeString": "type(struct Card.Servant storage pointer)"
+                      }
+                    },
+                    "id": 84,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": true,
+                    "kind": "structConstructorCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "676:162:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_struct$_Servant_$47_memory_ptr",
+                      "typeString": "struct Card.Servant memory"
+                    }
+                  },
+                  "nodeType": "VariableDeclarationStatement",
+                  "src": "654:184:0"
+                },
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "arguments": [
+                      {
+                        "argumentTypes": null,
+                        "id": 90,
+                        "name": "card",
+                        "nodeType": "Identifier",
+                        "overloadedDeclarations": [],
+                        "referencedDeclaration": 58,
+                        "src": "862:4:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_struct$_Servant_$47_memory_ptr",
+                          "typeString": "struct Card.Servant memory"
+                        }
+                      }
+                    ],
+                    "expression": {
+                      "argumentTypes": [
+                        {
+                          "typeIdentifier": "t_struct$_Servant_$47_memory_ptr",
+                          "typeString": "struct Card.Servant memory"
+                        }
+                      ],
+                      "expression": {
+                        "argumentTypes": null,
+                        "baseExpression": {
+                          "argumentTypes": null,
+                          "id": 86,
+                          "name": "drawed",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 52,
+                          "src": "842:6:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Servant_$47_storage_$dyn_storage_$",
+                            "typeString": "mapping(address => struct Card.Servant storage ref[] storage ref)"
+                          }
+                        },
+                        "id": 88,
+                        "indexExpression": {
+                          "argumentTypes": null,
+                          "id": 87,
+                          "name": "master",
+                          "nodeType": "Identifier",
+                          "overloadedDeclarations": [],
+                          "referencedDeclaration": 54,
+                          "src": "849:6:0",
+                          "typeDescriptions": {
+                            "typeIdentifier": "t_address",
+                            "typeString": "address"
+                          }
+                        },
+                        "isConstant": false,
+                        "isLValue": true,
+                        "isPure": false,
+                        "lValueRequested": false,
+                        "nodeType": "IndexAccess",
+                        "src": "842:14:0",
+                        "typeDescriptions": {
+                          "typeIdentifier": "t_array$_t_struct$_Servant_$47_storage_$dyn_storage",
+                          "typeString": "struct Card.Servant storage ref[] storage ref"
+                        }
+                      },
+                      "id": 89,
+                      "isConstant": false,
+                      "isLValue": false,
+                      "isPure": false,
+                      "lValueRequested": false,
+                      "memberName": "push",
+                      "nodeType": "MemberAccess",
+                      "referencedDeclaration": null,
+                      "src": "842:19:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_function_arraypush_nonpayable$_t_struct$_Servant_$47_storage_$returns$__$",
+                        "typeString": "function (struct Card.Servant storage ref)"
+                      }
+                    },
+                    "id": 91,
+                    "isConstant": false,
+                    "isLValue": false,
+                    "isPure": false,
+                    "kind": "functionCall",
+                    "lValueRequested": false,
+                    "names": [],
+                    "nodeType": "FunctionCall",
+                    "src": "842:25:0",
+                    "tryCall": false,
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_tuple$__$",
+                      "typeString": "tuple()"
+                    }
+                  },
+                  "id": 92,
+                  "nodeType": "ExpressionStatement",
+                  "src": "842:25:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 94,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "initMaster",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 55,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 54,
+                  "mutability": "mutable",
+                  "name": "master",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 94,
+                  "src": "625:14:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 53,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "625:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "624:16:0"
+            },
+            "returnParameters": {
+              "id": 56,
+              "nodeType": "ParameterList",
+              "parameters": [],
+              "src": "650:0:0"
+            },
+            "scope": 108,
+            "src": "605:266:0",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          },
+          {
+            "body": {
+              "id": 106,
+              "nodeType": "Block",
+              "src": "942:29:0",
+              "statements": [
+                {
+                  "expression": {
+                    "argumentTypes": null,
+                    "baseExpression": {
+                      "argumentTypes": null,
+                      "id": 102,
+                      "name": "drawed",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 52,
+                      "src": "953:6:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_mapping$_t_address_$_t_array$_t_struct$_Servant_$47_storage_$dyn_storage_$",
+                        "typeString": "mapping(address => struct Card.Servant storage ref[] storage ref)"
+                      }
+                    },
+                    "id": 104,
+                    "indexExpression": {
+                      "argumentTypes": null,
+                      "id": 103,
+                      "name": "master",
+                      "nodeType": "Identifier",
+                      "overloadedDeclarations": [],
+                      "referencedDeclaration": 96,
+                      "src": "960:6:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_address",
+                        "typeString": "address"
+                      }
+                    },
+                    "isConstant": false,
+                    "isLValue": true,
+                    "isPure": false,
+                    "lValueRequested": false,
+                    "nodeType": "IndexAccess",
+                    "src": "953:14:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Servant_$47_storage_$dyn_storage",
+                      "typeString": "struct Card.Servant storage ref[] storage ref"
+                    }
+                  },
+                  "functionReturnParameters": 101,
+                  "id": 105,
+                  "nodeType": "Return",
+                  "src": "946:21:0"
+                }
+              ]
+            },
+            "documentation": null,
+            "id": 107,
+            "implemented": true,
+            "kind": "function",
+            "modifiers": [],
+            "name": "getCards",
+            "nodeType": "FunctionDefinition",
+            "overrides": null,
+            "parameters": {
+              "id": 97,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 96,
+                  "mutability": "mutable",
+                  "name": "master",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 107,
+                  "src": "892:14:0",
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_address",
+                    "typeString": "address"
+                  },
+                  "typeName": {
+                    "id": 95,
+                    "name": "address",
+                    "nodeType": "ElementaryTypeName",
+                    "src": "892:7:0",
+                    "stateMutability": "nonpayable",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_address",
+                      "typeString": "address"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "891:16:0"
+            },
+            "returnParameters": {
+              "id": 101,
+              "nodeType": "ParameterList",
+              "parameters": [
+                {
+                  "constant": false,
+                  "id": 100,
+                  "mutability": "mutable",
+                  "name": "",
+                  "nodeType": "VariableDeclaration",
+                  "overrides": null,
+                  "scope": 107,
+                  "src": "925:16:0",
+                  "stateVariable": false,
+                  "storageLocation": "memory",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_array$_t_struct$_Servant_$47_memory_ptr_$dyn_memory_ptr",
+                    "typeString": "struct Card.Servant[]"
+                  },
+                  "typeName": {
+                    "baseType": {
+                      "contractScope": null,
+                      "id": 98,
+                      "name": "Servant",
+                      "nodeType": "UserDefinedTypeName",
+                      "referencedDeclaration": 47,
+                      "src": "925:7:0",
+                      "typeDescriptions": {
+                        "typeIdentifier": "t_struct$_Servant_$47_storage_ptr",
+                        "typeString": "struct Card.Servant"
+                      }
+                    },
+                    "id": 99,
+                    "length": null,
+                    "nodeType": "ArrayTypeName",
+                    "src": "925:9:0",
+                    "typeDescriptions": {
+                      "typeIdentifier": "t_array$_t_struct$_Servant_$47_storage_$dyn_storage_ptr",
+                      "typeString": "struct Card.Servant[]"
+                    }
+                  },
+                  "value": null,
+                  "visibility": "internal"
+                }
+              ],
+              "src": "924:18:0"
+            },
+            "scope": 108,
+            "src": "874:97:0",
+            "stateMutability": "nonpayable",
+            "virtual": false,
+            "visibility": "internal"
+          }
+        ],
+        "scope": 109,
+        "src": "149:824:0"
+      }
+    ],
+    "src": "36:938:0"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Card.sol",
+      "exportedSymbols": {
+        "Card": [
+          108
+        ]
+      },
+      "license": "GPL-3.0"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 1,
+        "name": "PragmaDirective",
+        "src": "36:23:0"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 2,
+        "name": "PragmaDirective",
+        "src": "60:33:0"
+      },
+      {
+        "attributes": {
+          "SourceUnit": 320,
+          "absolutePath": "@openzeppelin/contracts/access/Ownable.sol",
+          "file": "@openzeppelin/contracts/access/Ownable.sol",
+          "scope": 109,
+          "symbolAliases": [
+            null
+          ],
+          "unitAlias": ""
+        },
+        "id": 3,
+        "name": "ImportDirective",
+        "src": "95:52:0"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "contractDependencies": [
+            319,
+            342
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            108,
+            319,
+            342
+          ],
+          "name": "Card",
+          "scope": 109
+        },
+        "children": [
+          {
+            "attributes": {
+              "arguments": null
+            },
+            "children": [
+              {
+                "attributes": {
+                  "contractScope": null,
+                  "name": "Ownable",
+                  "referencedDeclaration": 319,
+                  "type": "contract Ownable"
+                },
+                "id": 4,
+                "name": "UserDefinedTypeName",
+                "src": "166:7:0"
+              }
+            ],
+            "id": 5,
+            "name": "InheritanceSpecifier",
+            "src": "166:7:0"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Card.Skill",
+              "name": "Skill",
+              "scope": 108,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "overrides": null,
+                  "scope": 10,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 6,
+                    "name": "ElementaryTypeName",
+                    "src": "195:6:0"
+                  }
+                ],
+                "id": 7,
+                "name": "VariableDeclaration",
+                "src": "195:11:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "description",
+                  "overrides": null,
+                  "scope": 10,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 8,
+                    "name": "ElementaryTypeName",
+                    "src": "210:6:0"
+                  }
+                ],
+                "id": 9,
+                "name": "VariableDeclaration",
+                "src": "210:18:0"
+              }
+            ],
+            "id": 10,
+            "name": "StructDefinition",
+            "src": "178:54:0"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Card.Servant",
+              "name": "Servant",
+              "scope": 108,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "id",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 11,
+                    "name": "ElementaryTypeName",
+                    "src": "258:5:0"
+                  }
+                ],
+                "id": 12,
+                "name": "VariableDeclaration",
+                "src": "258:8:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "saint",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 13,
+                    "name": "ElementaryTypeName",
+                    "src": "270:5:0"
+                  }
+                ],
+                "id": 14,
+                "name": "VariableDeclaration",
+                "src": "270:11:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 15,
+                    "name": "ElementaryTypeName",
+                    "src": "286:6:0"
+                  }
+                ],
+                "id": 16,
+                "name": "VariableDeclaration",
+                "src": "286:11:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "class",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 17,
+                    "name": "ElementaryTypeName",
+                    "src": "301:6:0"
+                  }
+                ],
+                "id": 18,
+                "name": "VariableDeclaration",
+                "src": "301:12:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "level",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 19,
+                    "name": "ElementaryTypeName",
+                    "src": "317:5:0"
+                  }
+                ],
+                "id": 20,
+                "name": "VariableDeclaration",
+                "src": "317:11:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "rank",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 21,
+                    "name": "ElementaryTypeName",
+                    "src": "332:5:0"
+                  }
+                ],
+                "id": 22,
+                "name": "VariableDeclaration",
+                "src": "332:10:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "npLv",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 23,
+                    "name": "ElementaryTypeName",
+                    "src": "346:5:0"
+                  }
+                ],
+                "id": 24,
+                "name": "VariableDeclaration",
+                "src": "346:10:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "levelCap",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 25,
+                    "name": "ElementaryTypeName",
+                    "src": "361:5:0"
+                  }
+                ],
+                "id": 26,
+                "name": "VariableDeclaration",
+                "src": "361:14:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "active",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct Card.Skill",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Skill",
+                      "referencedDeclaration": 10,
+                      "type": "struct Card.Skill"
+                    },
+                    "id": 27,
+                    "name": "UserDefinedTypeName",
+                    "src": "380:5:0"
+                  }
+                ],
+                "id": 28,
+                "name": "VariableDeclaration",
+                "src": "380:12:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "passive",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "struct Card.Skill",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "contractScope": null,
+                      "name": "Skill",
+                      "referencedDeclaration": 10,
+                      "type": "struct Card.Skill"
+                    },
+                    "id": 29,
+                    "name": "UserDefinedTypeName",
+                    "src": "396:5:0"
+                  }
+                ],
+                "id": 30,
+                "name": "VariableDeclaration",
+                "src": "396:13:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "atk",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint16",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint16",
+                      "type": "uint16"
+                    },
+                    "id": 31,
+                    "name": "ElementaryTypeName",
+                    "src": "414:6:0"
+                  }
+                ],
+                "id": 32,
+                "name": "VariableDeclaration",
+                "src": "414:10:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "def",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint16",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint16",
+                      "type": "uint16"
+                    },
+                    "id": 33,
+                    "name": "ElementaryTypeName",
+                    "src": "428:6:0"
+                  }
+                ],
+                "id": 34,
+                "name": "VariableDeclaration",
+                "src": "428:10:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "hp",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint16",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint16",
+                      "type": "uint16"
+                    },
+                    "id": 35,
+                    "name": "ElementaryTypeName",
+                    "src": "442:6:0"
+                  }
+                ],
+                "id": 36,
+                "name": "VariableDeclaration",
+                "src": "442:9:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "critRate",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint16",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint16",
+                      "type": "uint16"
+                    },
+                    "id": 37,
+                    "name": "ElementaryTypeName",
+                    "src": "455:6:0"
+                  }
+                ],
+                "id": 38,
+                "name": "VariableDeclaration",
+                "src": "455:15:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "critMultiplier",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint16",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint16",
+                      "type": "uint16"
+                    },
+                    "id": 39,
+                    "name": "ElementaryTypeName",
+                    "src": "474:6:0"
+                  }
+                ],
+                "id": 40,
+                "name": "VariableDeclaration",
+                "src": "474:21:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "atkPerLevel",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 41,
+                    "name": "ElementaryTypeName",
+                    "src": "500:5:0"
+                  }
+                ],
+                "id": 42,
+                "name": "VariableDeclaration",
+                "src": "500:17:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "defPerLevel",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 43,
+                    "name": "ElementaryTypeName",
+                    "src": "521:5:0"
+                  }
+                ],
+                "id": 44,
+                "name": "VariableDeclaration",
+                "src": "521:17:0"
+              },
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "hpPerLevel",
+                  "overrides": null,
+                  "scope": 47,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "uint8",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "uint8",
+                      "type": "uint8"
+                    },
+                    "id": 45,
+                    "name": "ElementaryTypeName",
+                    "src": "542:5:0"
+                  }
+                ],
+                "id": 46,
+                "name": "VariableDeclaration",
+                "src": "542:16:0"
+              }
+            ],
+            "id": 47,
+            "name": "StructDefinition",
+            "src": "237:325:0"
+          },
+          {
+            "attributes": {
+              "constant": false,
+              "mutability": "mutable",
+              "name": "drawed",
+              "overrides": null,
+              "scope": 108,
+              "stateVariable": true,
+              "storageLocation": "default",
+              "type": "mapping(address => struct Card.Servant[])",
+              "value": null,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "type": "mapping(address => struct Card.Servant[])"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "address",
+                      "type": "address"
+                    },
+                    "id": 48,
+                    "name": "ElementaryTypeName",
+                    "src": "573:7:0"
+                  },
+                  {
+                    "attributes": {
+                      "length": null,
+                      "type": "struct Card.Servant[]"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "contractScope": null,
+                          "name": "Servant",
+                          "referencedDeclaration": 47,
+                          "type": "struct Card.Servant"
+                        },
+                        "id": 49,
+                        "name": "UserDefinedTypeName",
+                        "src": "584:7:0"
+                      }
+                    ],
+                    "id": 50,
+                    "name": "ArrayTypeName",
+                    "src": "584:9:0"
+                  }
+                ],
+                "id": 51,
+                "name": "Mapping",
+                "src": "565:29:0"
+              }
+            ],
+            "id": 52,
+            "name": "VariableDeclaration",
+            "src": "565:36:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "initMaster",
+              "overrides": null,
+              "scope": 108,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "master",
+                      "overrides": null,
+                      "scope": 94,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 53,
+                        "name": "ElementaryTypeName",
+                        "src": "625:7:0"
+                      }
+                    ],
+                    "id": 54,
+                    "name": "VariableDeclaration",
+                    "src": "625:14:0"
+                  }
+                ],
+                "id": 55,
+                "name": "ParameterList",
+                "src": "624:16:0"
+              },
+              {
+                "attributes": {
+                  "parameters": [
+                    null
+                  ]
+                },
+                "children": [],
+                "id": 56,
+                "name": "ParameterList",
+                "src": "650:0:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "assignments": [
+                        58
+                      ]
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "constant": false,
+                          "mutability": "mutable",
+                          "name": "card",
+                          "overrides": null,
+                          "scope": 93,
+                          "stateVariable": false,
+                          "storageLocation": "memory",
+                          "type": "struct Card.Servant",
+                          "value": null,
+                          "visibility": "internal"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "Servant",
+                              "referencedDeclaration": 47,
+                              "type": "struct Card.Servant"
+                            },
+                            "id": 57,
+                            "name": "UserDefinedTypeName",
+                            "src": "654:7:0"
+                          }
+                        ],
+                        "id": 58,
+                        "name": "VariableDeclaration",
+                        "src": "654:19:0"
+                      },
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": true,
+                          "isStructConstructorCall": true,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "struct Card.Servant memory",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_rational_1_by_1",
+                                  "typeString": "int_const 1"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_1_by_1",
+                                  "typeString": "int_const 1"
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_4037f6d761cfbf48832f50486d1845773f241d9db629fcbdda1e65c6ce1bbcda",
+                                  "typeString": "literal_string \"Mashu Kyrielight\""
+                                },
+                                {
+                                  "typeIdentifier": "t_stringliteral_ee473512bf7bd5432e758e9288fcbf301b644bf7b69bb8e7e3dcca70c362727a",
+                                  "typeString": "literal_string \"Shielder\""
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_1_by_1",
+                                  "typeString": "int_const 1"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_3_by_1",
+                                  "typeString": "int_const 3"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_1_by_1",
+                                  "typeString": "int_const 1"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_60_by_1",
+                                  "typeString": "int_const 60"
+                                },
+                                {
+                                  "typeIdentifier": "t_struct$_Skill_$10_memory_ptr",
+                                  "typeString": "struct Card.Skill memory"
+                                },
+                                {
+                                  "typeIdentifier": "t_struct$_Skill_$10_memory_ptr",
+                                  "typeString": "struct Card.Skill memory"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_10_by_1",
+                                  "typeString": "int_const 10"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_10_by_1",
+                                  "typeString": "int_const 10"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_1000_by_1",
+                                  "typeString": "int_const 1000"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_25_by_1",
+                                  "typeString": "int_const 25"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_200_by_1",
+                                  "typeString": "int_const 200"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_100_by_1",
+                                  "typeString": "int_const 100"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_100_by_1",
+                                  "typeString": "int_const 100"
+                                },
+                                {
+                                  "typeIdentifier": "t_rational_100_by_1",
+                                  "typeString": "int_const 100"
+                                }
+                              ],
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 47,
+                              "type": "type(struct Card.Servant storage pointer)",
+                              "value": "Servant"
+                            },
+                            "id": 59,
+                            "name": "Identifier",
+                            "src": "676:7:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "31",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 1",
+                              "value": "1"
+                            },
+                            "id": 60,
+                            "name": "Literal",
+                            "src": "684:1:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "31",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 1",
+                              "value": "1"
+                            },
+                            "id": 61,
+                            "name": "Literal",
+                            "src": "687:1:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "4d61736875204b797269656c69676874",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Mashu Kyrielight\"",
+                              "value": "Mashu Kyrielight"
+                            },
+                            "id": 62,
+                            "name": "Literal",
+                            "src": "690:18:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "536869656c646572",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "string",
+                              "type": "literal_string \"Shielder\"",
+                              "value": "Shielder"
+                            },
+                            "id": 63,
+                            "name": "Literal",
+                            "src": "710:10:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "31",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 1",
+                              "value": "1"
+                            },
+                            "id": 64,
+                            "name": "Literal",
+                            "src": "722:1:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "33",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 3",
+                              "value": "3"
+                            },
+                            "id": 65,
+                            "name": "Literal",
+                            "src": "725:1:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "31",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 1",
+                              "value": "1"
+                            },
+                            "id": 66,
+                            "name": "Literal",
+                            "src": "728:1:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "3630",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 60",
+                              "value": "60"
+                            },
+                            "id": 67,
+                            "name": "Literal",
+                            "src": "731:2:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "isStructConstructorCall": true,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "struct Card.Skill memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                                      "typeString": "literal_string \"Undefined\""
+                                    },
+                                    {
+                                      "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                                      "typeString": "literal_string \"Undefined\""
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10,
+                                  "type": "type(struct Card.Skill storage pointer)",
+                                  "value": "Skill"
+                                },
+                                "id": 68,
+                                "name": "Identifier",
+                                "src": "735:5:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "556e646566696e6564",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "string",
+                                  "type": "literal_string \"Undefined\"",
+                                  "value": "Undefined"
+                                },
+                                "id": 69,
+                                "name": "Literal",
+                                "src": "741:11:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "556e646566696e6564",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "string",
+                                  "type": "literal_string \"Undefined\"",
+                                  "value": "Undefined"
+                                },
+                                "id": 70,
+                                "name": "Literal",
+                                "src": "754:11:0"
+                              }
+                            ],
+                            "id": 71,
+                            "name": "FunctionCall",
+                            "src": "735:31:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "isStructConstructorCall": true,
+                              "lValueRequested": false,
+                              "names": [
+                                null
+                              ],
+                              "tryCall": false,
+                              "type": "struct Card.Skill memory",
+                              "type_conversion": false
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": [
+                                    {
+                                      "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                                      "typeString": "literal_string \"Undefined\""
+                                    },
+                                    {
+                                      "typeIdentifier": "t_stringliteral_8dc56eba614a0f0af64ea65a69d5367c2ffee099194e7461c170333602bf4314",
+                                      "typeString": "literal_string \"Undefined\""
+                                    }
+                                  ],
+                                  "overloadedDeclarations": [
+                                    null
+                                  ],
+                                  "referencedDeclaration": 10,
+                                  "type": "type(struct Card.Skill storage pointer)",
+                                  "value": "Skill"
+                                },
+                                "id": 72,
+                                "name": "Identifier",
+                                "src": "768:5:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "556e646566696e6564",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "string",
+                                  "type": "literal_string \"Undefined\"",
+                                  "value": "Undefined"
+                                },
+                                "id": 73,
+                                "name": "Literal",
+                                "src": "774:11:0"
+                              },
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "hexvalue": "556e646566696e6564",
+                                  "isConstant": false,
+                                  "isLValue": false,
+                                  "isPure": true,
+                                  "lValueRequested": false,
+                                  "subdenomination": null,
+                                  "token": "string",
+                                  "type": "literal_string \"Undefined\"",
+                                  "value": "Undefined"
+                                },
+                                "id": 74,
+                                "name": "Literal",
+                                "src": "787:11:0"
+                              }
+                            ],
+                            "id": 75,
+                            "name": "FunctionCall",
+                            "src": "768:31:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "3130",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 10",
+                              "value": "10"
+                            },
+                            "id": 76,
+                            "name": "Literal",
+                            "src": "801:2:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "3130",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 10",
+                              "value": "10"
+                            },
+                            "id": 77,
+                            "name": "Literal",
+                            "src": "805:2:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "31303030",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 1000",
+                              "value": "1000"
+                            },
+                            "id": 78,
+                            "name": "Literal",
+                            "src": "809:4:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "3235",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 25",
+                              "value": "25"
+                            },
+                            "id": 79,
+                            "name": "Literal",
+                            "src": "815:2:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "323030",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 200",
+                              "value": "200"
+                            },
+                            "id": 80,
+                            "name": "Literal",
+                            "src": "819:3:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "313030",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 100",
+                              "value": "100"
+                            },
+                            "id": 81,
+                            "name": "Literal",
+                            "src": "824:3:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "313030",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 100",
+                              "value": "100"
+                            },
+                            "id": 82,
+                            "name": "Literal",
+                            "src": "829:3:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "hexvalue": "313030",
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": true,
+                              "lValueRequested": false,
+                              "subdenomination": null,
+                              "token": "number",
+                              "type": "int_const 100",
+                              "value": "100"
+                            },
+                            "id": 83,
+                            "name": "Literal",
+                            "src": "834:3:0"
+                          }
+                        ],
+                        "id": 84,
+                        "name": "FunctionCall",
+                        "src": "676:162:0"
+                      }
+                    ],
+                    "id": 85,
+                    "name": "VariableDeclarationStatement",
+                    "src": "654:184:0"
+                  },
+                  {
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": false,
+                          "isPure": false,
+                          "isStructConstructorCall": false,
+                          "lValueRequested": false,
+                          "names": [
+                            null
+                          ],
+                          "tryCall": false,
+                          "type": "tuple()",
+                          "type_conversion": false
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": [
+                                {
+                                  "typeIdentifier": "t_struct$_Servant_$47_memory_ptr",
+                                  "typeString": "struct Card.Servant memory"
+                                }
+                              ],
+                              "isConstant": false,
+                              "isLValue": false,
+                              "isPure": false,
+                              "lValueRequested": false,
+                              "member_name": "push",
+                              "referencedDeclaration": null,
+                              "type": "function (struct Card.Servant storage ref)"
+                            },
+                            "children": [
+                              {
+                                "attributes": {
+                                  "argumentTypes": null,
+                                  "isConstant": false,
+                                  "isLValue": true,
+                                  "isPure": false,
+                                  "lValueRequested": false,
+                                  "type": "struct Card.Servant storage ref[] storage ref"
+                                },
+                                "children": [
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 52,
+                                      "type": "mapping(address => struct Card.Servant storage ref[] storage ref)",
+                                      "value": "drawed"
+                                    },
+                                    "id": 86,
+                                    "name": "Identifier",
+                                    "src": "842:6:0"
+                                  },
+                                  {
+                                    "attributes": {
+                                      "argumentTypes": null,
+                                      "overloadedDeclarations": [
+                                        null
+                                      ],
+                                      "referencedDeclaration": 54,
+                                      "type": "address",
+                                      "value": "master"
+                                    },
+                                    "id": 87,
+                                    "name": "Identifier",
+                                    "src": "849:6:0"
+                                  }
+                                ],
+                                "id": 88,
+                                "name": "IndexAccess",
+                                "src": "842:14:0"
+                              }
+                            ],
+                            "id": 89,
+                            "name": "MemberAccess",
+                            "src": "842:19:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 58,
+                              "type": "struct Card.Servant memory",
+                              "value": "card"
+                            },
+                            "id": 90,
+                            "name": "Identifier",
+                            "src": "862:4:0"
+                          }
+                        ],
+                        "id": 91,
+                        "name": "FunctionCall",
+                        "src": "842:25:0"
+                      }
+                    ],
+                    "id": 92,
+                    "name": "ExpressionStatement",
+                    "src": "842:25:0"
+                  }
+                ],
+                "id": 93,
+                "name": "Block",
+                "src": "650:221:0"
+              }
+            ],
+            "id": 94,
+            "name": "FunctionDefinition",
+            "src": "605:266:0"
+          },
+          {
+            "attributes": {
+              "documentation": null,
+              "implemented": true,
+              "isConstructor": false,
+              "kind": "function",
+              "modifiers": [
+                null
+              ],
+              "name": "getCards",
+              "overrides": null,
+              "scope": 108,
+              "stateMutability": "nonpayable",
+              "virtual": false,
+              "visibility": "internal"
+            },
+            "children": [
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "master",
+                      "overrides": null,
+                      "scope": 107,
+                      "stateVariable": false,
+                      "storageLocation": "default",
+                      "type": "address",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "name": "address",
+                          "stateMutability": "nonpayable",
+                          "type": "address"
+                        },
+                        "id": 95,
+                        "name": "ElementaryTypeName",
+                        "src": "892:7:0"
+                      }
+                    ],
+                    "id": 96,
+                    "name": "VariableDeclaration",
+                    "src": "892:14:0"
+                  }
+                ],
+                "id": 97,
+                "name": "ParameterList",
+                "src": "891:16:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "constant": false,
+                      "mutability": "mutable",
+                      "name": "",
+                      "overrides": null,
+                      "scope": 107,
+                      "stateVariable": false,
+                      "storageLocation": "memory",
+                      "type": "struct Card.Servant[]",
+                      "value": null,
+                      "visibility": "internal"
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "length": null,
+                          "type": "struct Card.Servant[]"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "contractScope": null,
+                              "name": "Servant",
+                              "referencedDeclaration": 47,
+                              "type": "struct Card.Servant"
+                            },
+                            "id": 98,
+                            "name": "UserDefinedTypeName",
+                            "src": "925:7:0"
+                          }
+                        ],
+                        "id": 99,
+                        "name": "ArrayTypeName",
+                        "src": "925:9:0"
+                      }
+                    ],
+                    "id": 100,
+                    "name": "VariableDeclaration",
+                    "src": "925:16:0"
+                  }
+                ],
+                "id": 101,
+                "name": "ParameterList",
+                "src": "924:18:0"
+              },
+              {
+                "children": [
+                  {
+                    "attributes": {
+                      "functionReturnParameters": 101
+                    },
+                    "children": [
+                      {
+                        "attributes": {
+                          "argumentTypes": null,
+                          "isConstant": false,
+                          "isLValue": true,
+                          "isPure": false,
+                          "lValueRequested": false,
+                          "type": "struct Card.Servant storage ref[] storage ref"
+                        },
+                        "children": [
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 52,
+                              "type": "mapping(address => struct Card.Servant storage ref[] storage ref)",
+                              "value": "drawed"
+                            },
+                            "id": 102,
+                            "name": "Identifier",
+                            "src": "953:6:0"
+                          },
+                          {
+                            "attributes": {
+                              "argumentTypes": null,
+                              "overloadedDeclarations": [
+                                null
+                              ],
+                              "referencedDeclaration": 96,
+                              "type": "address",
+                              "value": "master"
+                            },
+                            "id": 103,
+                            "name": "Identifier",
+                            "src": "960:6:0"
+                          }
+                        ],
+                        "id": 104,
+                        "name": "IndexAccess",
+                        "src": "953:14:0"
+                      }
+                    ],
+                    "id": 105,
+                    "name": "Return",
+                    "src": "946:21:0"
+                  }
+                ],
+                "id": 106,
+                "name": "Block",
+                "src": "942:29:0"
+              }
+            ],
+            "id": 107,
+            "name": "FunctionDefinition",
+            "src": "874:97:0"
+          }
+        ],
+        "id": 108,
+        "name": "ContractDefinition",
+        "src": "149:824:0"
+      }
+    ],
+    "id": 109,
+    "name": "SourceUnit",
+    "src": "36:938:0"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {
+    "5777": {
+      "events": {
+        "0x8be0079c531659141344cd1fd0a4f28419497f9722a3daafe3b4186f6b6457e0": {
+          "anonymous": false,
+          "inputs": [
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "previousOwner",
+              "type": "address"
+            },
+            {
+              "indexed": true,
+              "internalType": "address",
+              "name": "newOwner",
+              "type": "address"
+            }
+          ],
+          "name": "OwnershipTransferred",
+          "type": "event"
+        }
+      },
+      "links": {},
+      "address": "0x51aDdDd3A79eAd6fd8B878F40D7Ff2c413dec224",
+      "transactionHash": "0x492ebf9d9a6adb4dbf115187c9fbe9253e4f16148cc9a3fdcfc432af8598dcb2"
+    }
+  },
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-17T01:17:47.765Z",
+  "networkType": "ethereum",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {
+      "owner()": {
+        "details": "Returns the address of the current owner."
+      },
+      "renounceOwnership()": {
+        "details": "Leaves the contract without owner. It will not be possible to call `onlyOwner` functions anymore. Can only be called by the current owner. NOTE: Renouncing ownership will leave the contract without an owner, thereby removing any functionality that is only available to the owner."
+      },
+      "transferOwnership(address)": {
+        "details": "Transfers ownership of the contract to a new account (`newOwner`). Can only be called by the current owner."
+      }
+    },
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "name": "contracts",
+  "version": "1.0.0",
+  "dependencies": {
+    "@openzeppelin/contracts": "^3.3.0"
+  },
+  "scripts": {
+    "compile": "truffle compile && cp -rf ./build/contracts/ ../frontend/src/artifacts",
+    "migrate": "truffle migrate --reset && cp -rf ./build/contracts/ ../frontend/src/artifacts"
+  }
+}
