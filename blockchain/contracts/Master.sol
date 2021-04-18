@@ -6,6 +6,11 @@ import './Card.sol';
 
 contract Master is Card {
 	mapping(address => string) masters;
-	mapping(address => uint) created;
-	mapping(address => Servant) choosen;
+	mapping(address => uint16) choosen;
+
+	modifier exsist() {
+		if(keccak256(abi.encodePacked((masters[msg.sender]))) == keccak256(abi.encodePacked((""))))
+      revert();
+		_;
+	}
 }

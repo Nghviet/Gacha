@@ -2,13 +2,12 @@ import {Component} from 'react';
 import Web3 from 'web3';
 import TruffleContract from '@truffle/contract';
 import MainArtifact from './artifacts/Main';
-import CardArtifact from './artifacts/Card';
-import MasterArtifact from './artifacts/Master';
-import PoolingArtifact from './artifacts/Pooling';
-class Rpc extends Component {
+
+import history from './history';
+class Rpc {
 	constructor() {
-		super();
 		this.contracts = {};
+		this.contract = null;
 		this.web3 = null;
 		this.account = null;
 		if(window.ethereum) {
@@ -25,6 +24,8 @@ class Rpc extends Component {
 		} else {
 			this.initWeb3(Web3.providers.HttpProvider('http://localhost:7545'));
 		}
+
+		this.setPlayer = null;
 	}
 
 	initWeb3 = provider => {
@@ -41,34 +42,31 @@ class Rpc extends Component {
 	}
 
 	initContract = provider => {
-		this.contracts.Main = TruffleContract(MainArtifact);
-		this.contracts.Main.setProvider(provider);
+		this.contract = TruffleContract(MainArtifact);
+		this.contract.setProvider(provider);
 
-		this.contracts.Master = TruffleContract(MasterArtifact);
-		this.contracts.Master.setProvider(provider);
-
-		this.contracts.Card = TruffleContract(CardArtifact);
-		this.contracts.Card.setProvider(provider);
-
-		this.contracts.Pooling = TruffleContract(PoolingArtifact);
-		this.contracts.Pooling.setProvider(provider);
-
-		this.contracts.Pooling.deployed()
+		this.contract.deployed()
 		.then(instance => {
-			instance.getMaster.call({from : this.address})
+			instance.getMaster.call()
 			.then(result => {
+				if(this.setPlayer != null) this.setPlayer(result);
 				console.log(result);
 			})
 			.catch(err => {
 				console.log(err);
-				instance.createMaster('Nghviet', {from : this.account})
-				.then(receipt => {
-					console.log(receipt);
-				})
-				.catch(err => {
-					console.log(err);
-				})
+				if(this.setPlayer != null) this.setPlayer(undefined);
 			})
+		})
+		.catch(err => {
+			console.log(err);
+		}) 
+	}
+
+	ready = () => {
+		return new Promise((resolve, report) => {
+			setTimeout(() => {
+				if(this.contract != null) resolve();
+			}, 100);
 		})
 	}
 }

@@ -40,8 +40,7 @@ contract Card is Ownable {
 	mapping(address => Servant[]) drawed;
 
 	function initMaster(address master) internal {
-		Servant memory card = Servant(1, 1, "Mashu Kyrielight", "Shielder", 1, 3, 1, 60, Skill("Undefined", "Undefined"), Skill("Undefined", "Undefined"), 10, 10, 1000, 25, 200, 100, 100, 100);
-		drawed[master].push(card);
+		
 	}
 
 	function getCards(address master) internal returns(Servant[] memory){

@@ -1,0 +1,303 @@
+{
+  "contractName": "Monster",
+  "abi": [],
+  "metadata": "{\"compiler\":{\"version\":\"0.6.12+commit.27d51765\"},\"language\":\"Solidity\",\"output\":{\"abi\":[],\"devdoc\":{\"kind\":\"dev\",\"methods\":{},\"version\":1},\"userdoc\":{\"kind\":\"user\",\"methods\":{},\"version\":1}},\"settings\":{\"compilationTarget\":{\"/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Monster.sol\":\"Monster\"},\"evmVersion\":\"istanbul\",\"libraries\":{},\"metadata\":{\"bytecodeHash\":\"ipfs\"},\"optimizer\":{\"enabled\":false,\"runs\":200},\"remappings\":[]},\"sources\":{\"/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Monster.sol\":{\"keccak256\":\"0x2e0f2759589999665006f3947c46baf0a308e325afe124bb8765ce0b8aaae865\",\"license\":\"GPL-3.0\",\"urls\":[\"bzz-raw://05234f5808bdb2f55f9ee39d2b096598baedd1859da99f35c78a6821a48b8ffc\",\"dweb:/ipfs/Qma1vyJcSNLiAYNJnujaH3izDFqsL3QB9TCxpKWNVPjNzX\"]}},\"version\":1}",
+  "bytecode": "0x6080604052348015600f57600080fd5b50603f80601d6000396000f3fe6080604052600080fdfea2646970667358221220aed44398b039081aea0f19569db22a9a5d40bb7949bf5f7f236f49ca6f379cce64736f6c634300060c0033",
+  "deployedBytecode": "0x6080604052600080fdfea2646970667358221220aed44398b039081aea0f19569db22a9a5d40bb7949bf5f7f236f49ca6f379cce64736f6c634300060c0033",
+  "immutableReferences": {},
+  "sourceMap": "95:97:2:-:0;;;;;;;;;;;;;;;;;;;",
+  "deployedSourceMap": "95:97:2:-:0;;;;;",
+  "source": "// SPDX-License-Identifier: GPL-3.0\npragma solidity 0.6.12;\npragma experimental ABIEncoderV2;\n\ncontract Monster {\n\t\n\tstruct Monster {\n\t\tstring name;\n\t}\n\n\tstruct Location {\n\t\tstring name;\n\n\t}\n}\n",
+  "sourcePath": "/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Monster.sol",
+  "ast": {
+    "absolutePath": "/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Monster.sol",
+    "exportedSymbols": {
+      "Monster": [
+        219
+      ]
+    },
+    "id": 220,
+    "license": "GPL-3.0",
+    "nodeType": "SourceUnit",
+    "nodes": [
+      {
+        "id": 211,
+        "literals": [
+          "solidity",
+          "0.6",
+          ".12"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "36:23:2"
+      },
+      {
+        "id": 212,
+        "literals": [
+          "experimental",
+          "ABIEncoderV2"
+        ],
+        "nodeType": "PragmaDirective",
+        "src": "60:33:2"
+      },
+      {
+        "abstract": false,
+        "baseContracts": [],
+        "contractDependencies": [],
+        "contractKind": "contract",
+        "documentation": null,
+        "fullyImplemented": true,
+        "id": 219,
+        "linearizedBaseContracts": [
+          219
+        ],
+        "name": "Monster",
+        "nodeType": "ContractDefinition",
+        "nodes": [
+          {
+            "canonicalName": "Monster.Monster",
+            "id": 215,
+            "members": [
+              {
+                "constant": false,
+                "id": 214,
+                "mutability": "mutable",
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 215,
+                "src": "136:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 213,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "136:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Monster",
+            "nodeType": "StructDefinition",
+            "scope": 219,
+            "src": "117:34:2",
+            "visibility": "public"
+          },
+          {
+            "canonicalName": "Monster.Location",
+            "id": 218,
+            "members": [
+              {
+                "constant": false,
+                "id": 217,
+                "mutability": "mutable",
+                "name": "name",
+                "nodeType": "VariableDeclaration",
+                "overrides": null,
+                "scope": 218,
+                "src": "174:11:2",
+                "stateVariable": false,
+                "storageLocation": "default",
+                "typeDescriptions": {
+                  "typeIdentifier": "t_string_storage_ptr",
+                  "typeString": "string"
+                },
+                "typeName": {
+                  "id": 216,
+                  "name": "string",
+                  "nodeType": "ElementaryTypeName",
+                  "src": "174:6:2",
+                  "typeDescriptions": {
+                    "typeIdentifier": "t_string_storage_ptr",
+                    "typeString": "string"
+                  }
+                },
+                "value": null,
+                "visibility": "internal"
+              }
+            ],
+            "name": "Location",
+            "nodeType": "StructDefinition",
+            "scope": 219,
+            "src": "154:36:2",
+            "visibility": "public"
+          }
+        ],
+        "scope": 220,
+        "src": "95:97:2"
+      }
+    ],
+    "src": "36:157:2"
+  },
+  "legacyAST": {
+    "attributes": {
+      "absolutePath": "/Users/NgHViet/Desktop/Blockchain/gacha/blockchain/contracts/Monster.sol",
+      "exportedSymbols": {
+        "Monster": [
+          219
+        ]
+      },
+      "license": "GPL-3.0"
+    },
+    "children": [
+      {
+        "attributes": {
+          "literals": [
+            "solidity",
+            "0.6",
+            ".12"
+          ]
+        },
+        "id": 211,
+        "name": "PragmaDirective",
+        "src": "36:23:2"
+      },
+      {
+        "attributes": {
+          "literals": [
+            "experimental",
+            "ABIEncoderV2"
+          ]
+        },
+        "id": 212,
+        "name": "PragmaDirective",
+        "src": "60:33:2"
+      },
+      {
+        "attributes": {
+          "abstract": false,
+          "baseContracts": [
+            null
+          ],
+          "contractDependencies": [
+            null
+          ],
+          "contractKind": "contract",
+          "documentation": null,
+          "fullyImplemented": true,
+          "linearizedBaseContracts": [
+            219
+          ],
+          "name": "Monster",
+          "scope": 220
+        },
+        "children": [
+          {
+            "attributes": {
+              "canonicalName": "Monster.Monster",
+              "name": "Monster",
+              "scope": 219,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "overrides": null,
+                  "scope": 215,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 213,
+                    "name": "ElementaryTypeName",
+                    "src": "136:6:2"
+                  }
+                ],
+                "id": 214,
+                "name": "VariableDeclaration",
+                "src": "136:11:2"
+              }
+            ],
+            "id": 215,
+            "name": "StructDefinition",
+            "src": "117:34:2"
+          },
+          {
+            "attributes": {
+              "canonicalName": "Monster.Location",
+              "name": "Location",
+              "scope": 219,
+              "visibility": "public"
+            },
+            "children": [
+              {
+                "attributes": {
+                  "constant": false,
+                  "mutability": "mutable",
+                  "name": "name",
+                  "overrides": null,
+                  "scope": 218,
+                  "stateVariable": false,
+                  "storageLocation": "default",
+                  "type": "string",
+                  "value": null,
+                  "visibility": "internal"
+                },
+                "children": [
+                  {
+                    "attributes": {
+                      "name": "string",
+                      "type": "string"
+                    },
+                    "id": 216,
+                    "name": "ElementaryTypeName",
+                    "src": "174:6:2"
+                  }
+                ],
+                "id": 217,
+                "name": "VariableDeclaration",
+                "src": "174:11:2"
+              }
+            ],
+            "id": 218,
+            "name": "StructDefinition",
+            "src": "154:36:2"
+          }
+        ],
+        "id": 219,
+        "name": "ContractDefinition",
+        "src": "95:97:2"
+      }
+    ],
+    "id": 220,
+    "name": "SourceUnit",
+    "src": "36:157:2"
+  },
+  "compiler": {
+    "name": "solc",
+    "version": "0.6.12+commit.27d51765.Emscripten.clang"
+  },
+  "networks": {},
+  "schemaVersion": "3.3.4",
+  "updatedAt": "2021-04-17T01:26:21.129Z",
+  "devdoc": {
+    "kind": "dev",
+    "methods": {},
+    "version": 1
+  },
+  "userdoc": {
+    "kind": "user",
+    "methods": {},
+    "version": 1
+  }
+}
